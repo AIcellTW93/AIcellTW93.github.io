@@ -1,10 +1,46 @@
 const projects = [
-  { title: "Sora Archive", type: "Branding", year: "2025", art: "sora" },
-  { title: "Momo Studio", type: "Digital", year: "2025", art: "momo" },
-  { title: "No. 47", type: "Visual", year: "2024", art: "mono" },
-  { title: "Luna Objects", type: "Branding", year: "2024", art: "luna" },
-  { title: "Play, Again", type: "Digital", year: "2024", art: "play" },
-  { title: "Edge of Summer", type: "Visual", year: "2023", art: "edge" },
+  {
+    title: "Pickleball Bag / Blue",
+    type: "Pickleball",
+    year: "2026",
+    image: "assets/works/pickleball-bag-blue.jpg",
+    alt: "蓝色匹克球包的商品详情视觉稿。",
+  },
+  {
+    title: "Pickleball Bag / Black",
+    type: "Pickleball",
+    year: "2026",
+    image: "assets/works/pickleball-bag-black.jpg",
+    alt: "黑色匹克球包的商品详情视觉稿。",
+  },
+  {
+    title: "Military Duffel / Overview",
+    type: "Travel",
+    year: "2026",
+    image: "assets/works/military-duffel-01.jpg",
+    alt: "军绿色拉杆旅行包的商品详情视觉稿。",
+  },
+  {
+    title: "Military Duffel / Details",
+    type: "Travel",
+    year: "2026",
+    image: "assets/works/military-duffel-02.jpg",
+    alt: "军绿色拉杆旅行包的细节展示视觉稿。",
+  },
+  {
+    title: "Commuter Backpack / Details",
+    type: "Backpack",
+    year: "2026",
+    image: "assets/works/commuter-backpack-01.jpg",
+    alt: "黑色通勤背包的细节展示视觉稿。",
+  },
+  {
+    title: "Commuter Backpack / Campaign",
+    type: "Backpack",
+    year: "2026",
+    image: "assets/works/commuter-backpack-02.jpg",
+    alt: "黑色通勤背包的商品详情视觉稿。",
+  },
 ];
 
 const projectsElement = document.querySelector("#projects");
@@ -18,7 +54,14 @@ function renderProjects(filter = "all") {
     .forEach((project) => {
       const item = template.content.cloneNode(true);
       const art = item.querySelector(".art");
-      art.classList.add(`art--${project.art}`);
+      const image = document.createElement("img");
+      image.className = "art art--image";
+      image.src = project.image;
+      image.alt = project.alt;
+      image.loading = "lazy";
+      image.decoding = "async";
+      art.replaceWith(image);
+      item.querySelector(".project-link").href = project.image;
       item.querySelector("h3").textContent = project.title;
       item.querySelector(".project-type").textContent = project.type;
       item.querySelector(".project-year").textContent = project.year;
